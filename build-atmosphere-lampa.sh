@@ -45,11 +45,14 @@ _pick_jdk() {
         "$PARENT_ROOT/prebuilts/jdk/jdk17/linux-x86" \
         "$PARENT_ROOT/prebuilts/jdk/jdk17" \
         /usr/lib/jvm/java-17-openjdk \
+        /usr/lib/jvm/java-17-openjdk-amd64 \
         /usr/lib/jvm/java-17-openjdk-*.x86_64 \
         /usr/lib/jvm/jre-17-openjdk \
+        /usr/lib/jvm/jre-17-openjdk-amd64 \
         "$PARENT_ROOT/prebuilts/jdk/jdk21/linux-x86" \
         "$PARENT_ROOT/prebuilts/jdk/jdk21" \
         /usr/lib/jvm/java-21-openjdk \
+        /usr/lib/jvm/java-21-openjdk-amd64 \
         /usr/lib/jvm/java-21-openjdk-*.x86_64; do
         for actual in $cand; do
             if [ -x "$actual/bin/java" ]; then
