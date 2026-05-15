@@ -712,3 +712,88 @@ are NEVER manually invoked; they ALWAYS travel with the markdown.
 §11.4.12.
 
 Non-compliance is a release blocker regardless of context.
+
+**§11.4.33 — Type-aware closure-status vocabulary (User mandate, 2026-05-15)**
+
+§11.4.15 defined the lifecycle Status closed-set including terminal
+`Fixed (→ Fixed.md)`. §11.4.16 defined the Type closed-set
+`{Bug | Feature | Task}`. §11.4.33 binds the two — closure terminal
+value MUST agree with the item Type: `Bug` → `Fixed (→ Fixed.md)`,
+`Feature` → `Implemented (→ Fixed.md)`, `Task` → `Completed (→ Fixed.md)`.
+The `(→ Fixed.md)` suffix is preserved so existing migration tooling
+(atomic Issues.md → Fixed.md move per §11.4.19) keeps working.
+Generators treat the three terminal values as semantically equivalent
+(all closed, positive evidence captured) but preserve the literal in
+emitted docs. Closing a `Feature` with `Fixed (→ Fixed.md)` or a
+`Task` with `Implemented (→ Fixed.md)` is a §11.4.33 violation.
+Pre-build gate `CM-CLOSURE-VOCAB-TYPE-AWARE`.
+
+**Canonical authority:** parent
+[`docs/guides/ATMOSPHERE_CONSTITUTION.md`](../../../../docs/guides/ATMOSPHERE_CONSTITUTION.md)
+§11.4.33.
+
+Non-compliance is a release blocker regardless of context.
+
+**§11.4.34 — Reopened-source attribution mandate (User mandate, 2026-05-15)**
+
+Every Issues.md heading whose `**Status:**` is `Reopened` MUST carry
+a `**Reopened-Details:**` line within 8 non-blank lines of the
+heading, capturing four sub-facts: **By:** `AI` or `User`; **On:**
+ISO date; **Reason:** one of `{ test-failed | manual-testing-detected
+| captured-evidence-contradicts | end-user-report | cycle-re-discovered
+| design-reconsidered }` or explicit free text; **Evidence:** path or
+short description of the captured artefact. Reopens without evidence
+are §11.4.6 / §11.4.7 violations: the reopen IS a demotion-from-Fixed
+change. Issues_Summary.md Status column MUST distinguish Reopened
+sub-states by source (e.g. `Reopened (AI: test-failed)` vs
+`Reopened (User: manual-testing)`). Pre-build gate
+`CM-ITEM-REOPENED-DETAILS` mirrors `CM-ITEM-OPERATOR-BLOCKED-DETAILS`
+walk pattern.
+
+**Canonical authority:** parent
+[`docs/guides/ATMOSPHERE_CONSTITUTION.md`](../../../../docs/guides/ATMOSPHERE_CONSTITUTION.md)
+§11.4.34.
+
+Non-compliance is a release blocker regardless of context.
+
+**§11.4.35 — Canonical-root inheritance clarity (User mandate, 2026-05-15)**
+
+**The constitution submodule's three files
+(`constitution/Constitution.md`, `constitution/CLAUDE.md`,
+`constitution/AGENTS.md`) ARE the canonical root** — also called the
+parent files. Universal rules per §11.4.17 live there.
+
+**This submodule's `CLAUDE.md` and `AGENTS.md` are consumer
+extensions** of the parent ATMOSphere-Android-15 project, which is
+itself a consumer extension of the constitution submodule. Both
+layers open with an inheritance pointer (the `## INHERITED FROM`
+heading near the top of each, or `@constitution/CLAUDE.md` for
+agents that resolve `@imports`). This submodule's files contain
+only rules specific to this submodule's role inside ATMOSphere
+(player wiring, on-device test contract, build-step integration,
+APK module name, applicationId conventions). Project-wide
+ATMOSphere rules live in the parent ATMOSphere-Android-15
+`CLAUDE.md` / `AGENTS.md`. Universal rules live in the constitution
+submodule.
+
+When in doubt: universal rule → constitution submodule;
+ATMOSphere-wide rule → parent project repo root; this-submodule-only
+rule → this file. Default to the narrowest layer when uncertain.
+"Parent CLAUDE.md" / "root Constitution" → constitution submodule
+file at `constitution/<filename>`, NEVER this submodule's own
+`CLAUDE.md` / `AGENTS.md` and NEVER the parent ATMOSphere-Android-15
+project root files. Moving a rule between layers MUST be a visible
+commit — `git mv` + an explicit
+"Lifted from <source-layer> to <target-layer> per §11.4.35" line in
+the message. AI agents MUST NOT silently re-author a §11.4.X anchor
+in the wrong layer and call it propagation.
+
+Recommended pre-build gate `CM-CANONICAL-ROOT-CLARITY` verifies the
+inheritance pointer is present and the constitution submodule files
+are reachable. Composes with §11.4.17.
+
+**Canonical authority:** constitution submodule
+[`Constitution.md`](../../../../constitution/Constitution.md)
+§11.4.35.
+
+Non-compliance is a release blocker regardless of context.
