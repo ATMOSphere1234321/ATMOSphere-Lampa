@@ -790,7 +790,7 @@ are reachable. Composes with §11.4.17.
 
 Non-compliance is a release blocker regardless of context.
 
-**§11.4.37 — Full-suite retest before release tag mandate (User mandate, 2026-05-17)**
+**§11.4.40 — Full-suite retest before release tag mandate (User mandate, 2026-05-17)**
 
 A release tag MUST NOT be created until a COMPLETE retest with ALL existing tests has been executed on a clean baseline AFTER every workable item in the batch is done, fixed, polished, and individually verified. Spot-check retests that run only the tests touched by the batch are FORBIDDEN — they miss interaction defects between the batch's fixes and previously-stable code.
 
@@ -800,7 +800,7 @@ Time is essential — complete retest is typically 12–48 hour elapsed effort. 
 
 Composes with §11.4.4 (per-fix retest) — §11.4.37 is the additional final integrity check at RELEASE granularity. Composes with §11.4.7 — full-suite retest is the authoritative baseline for closures in the batch. No escape hatch — no `--skip-full-retest` or `--quick-release` flag exists.
 
-Pre-build gate `CM-FULL-SUITE-RETEST-MANDATE` + paired mutation. Propagation gate `CM-COVENANT-114-37-PROPAGATION` enforces this anchor in every CLAUDE.md/AGENTS.md across parent + 10 owned submodules + HelixQA dependencies.
+Pre-build gate `CM-FULL-SUITE-RETEST-MANDATE` + paired mutation. Propagation gate `CM-COVENANT-114-40-PROPAGATION` enforces this anchor in every CLAUDE.md/AGENTS.md across parent + 10 owned submodules + HelixQA dependencies.
 
 **Canonical authority:** constitution submodule [`Constitution.md`](../../../../constitution/Constitution.md) §11.4.37.
 
