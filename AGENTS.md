@@ -860,3 +860,49 @@ Pre-build gates: `CM-FIXED-SUMMARY-SYNC` (6 invariants — Fixed_Summary exists 
 **Canonical authority:** constitution submodule Constitution.md §11.4.53.
 
 Non-compliance is a release blocker regardless of context.
+
+**§11.4.58 — Parallel-development methodology (User mandate, 2026-05-19)**
+
+Project work proceeds through the **Parallel Work Unit (PWU)
+pipeline** rather than sequential Phase-chain. Each PWU has: ATM-NNN
+identifier (§11.4.54), Issues.md entry (§11.4.15+§11.4.16), file-scope
+manifest, §11.4.43 RED test, source patch, pre-build gate, post-flash
+test, paired §1.1 meta-test mutation, HelixQA Challenge bank entry,
+captured-evidence directory (§11.4.5+§11.4.52).
+
+**5-stage pipeline:** Stage 1 DEVELOP (parallel PWU agents in
+worktrees) → Stage 2 MERGE (serial conductor + §11.4.41 4-step
+merge-first) → Stage 3 REBUILD+FLASH (parallel where hardware allows)
+→ Stage 4 VALIDATE (parallel D3+D4+meta-test+coverage) → Stage 5 SWEEP
+(parallel HelixQA + Fixed.md migration + README refresh). Stage 1 of
+round N+1 overlaps with Stages 4-5 of round N.
+
+**Synchronization:** 4-layer lock hierarchy (parent flock / per-
+submodule git / contention-path advisory locks for 10 forbidden cross-
+PWU paths / per-PWU worktree). Disjoint-scope PWUs fully parallel.
+
+**Anti-bluff merge-time enforcement (mandatory, all four):** C1
+§11.4.43 RED-test captured. C2 §1.1 paired meta-test mutation FAILs
+the gate. C3 §11.4.50 3-iter (or 10-iter) deterministic-consistency.
+C4 §11.4.5 captured-evidence per feature type. Metadata-only /
+configuration-only / absence-of-error / grep-without-runtime PASS
+REJECTED. HelixQA Challenge bank coverage MANDATORY for every user-
+visible PWU.
+
+**Phase 39.EX infrastructure gates (5 gates land the parallel
+infrastructure itself):** `CM-PWU-PARALLEL-VALIDATION-ORCHESTRATOR`,
+`CM-PWU-HELIXQA-PER-DOMAIN-RUNNER`, `CM-PWU-WORKER-POOL-LOCKING`,
+`CM-PWU-FILE-SCOPE-PARTITION`, `CM-PWU-AUTO-MERGE-GATE-6CONDITIONS`.
+Each ships a paired meta-test mutation per §1.1.
+
+Pre-build gates `CM-PWU-LOCK-HIERARCHY` + `CM-PWU-ANTI-BLUFF-COVERAGE`
++ `CM-PWU-MERGE-QUEUE-DISCIPLINE` + `CM-PWU-PARALLEL-AGENT-LIMIT` +
+`CM-COVENANT-114-58-PROPAGATION`. Paired mutations cover each gate.
+No escape hatch.
+
+Canonical authority: constitution submodule
+[`Constitution.md`](constitution/Constitution.md) §11.4.58.
+Project-specific implementation reference:
+[`docs/guides/PARALLEL_DEVELOPMENT_METHODOLOGY.md`](docs/guides/PARALLEL_DEVELOPMENT_METHODOLOGY.md).
+
+Non-compliance is a release blocker regardless of context.
