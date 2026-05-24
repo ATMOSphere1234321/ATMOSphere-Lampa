@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>QWEN</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">QWEN</h1>
+</header>
+<h1 id="qwenmd--atmosphere-lampa-fork">QWEN.md — ATMOSphere Lampa
+fork</h1>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revision</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Created</td>
+<td>2026-05-23</td>
+</tr>
+<tr>
+<td>Last modified</td>
+<td>2026-05-23</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>active</td>
+</tr>
+<tr>
+<td>Status summary</td>
+<td>Created per Phase 39.IT (User mandate 2026-05-23) — propagation of
+QWEN.md across the consumer fleet, mirroring CLAUDE.md + AGENTS.md per
+§11.4.35 canonical-root inheritance.</td>
+</tr>
+<tr>
+<td>Issues</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Continuation</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inherited-from-constitutionqwenmd">INHERITED FROM
+constitution/QWEN.md</h2>
+<p>All rules in <code>constitution/QWEN.md</code> (and the
+<code>constitution/Constitution.md</code> it references) apply
+unconditionally. This module&#39;s rules below extend them — they do NOT
+weaken any universal clause. When this file disagrees with the
+constitution submodule, the constitution wins. Locate the constitution
+submodule from any arbitrary nested depth using its
+<code>find_constitution.sh</code> helper.</p>
+<p>The universal anti-bluff covenant (§11.4), no-guessing mandate
+(§11.4.6), credentials-handling mandate (§11.4.10), host-session safety
+(§12 + §12.6 + §12.10), and data safety (§9) all live in
+<code>constitution/Constitution.md</code>. Read it before working on any
+non-trivial change.</p>
+<p>@constitution/QWEN.md</p>
+<p>Canonical reference: <a href="https://github.com/HelixDevelopment/HelixConstitution">https://github.com/HelixDevelopment/HelixConstitution</a></p>
+<h2 id="how-this-file-relates-to-claudemd--agentsmd">How this file
+relates to CLAUDE.md + AGENTS.md</h2>
+<p>Per §11.4.35 canonical-root inheritance clarity:</p>
+<ul>
+<li><code>constitution/QWEN.md</code> is the universal canonical root
+for the Qwen Code CLI.</li>
+<li>This file is the consumer-side extension for this submodule,
+carrying only the inheritance pointer + the §11.4 covenant anchors + a
+brief module summary.</li>
+<li>The full module ruleset lives in this submodule&#39;s sibling
+<code>CLAUDE.md</code>. Qwen Code agents MUST read CLAUDE.md before
+performing any work; this QWEN.md is the Qwen-specific entry point that
+ensures Qwen reads the inheritance pointer + anti-bluff covenant on
+every session.</li>
+</ul>
+<h2 id="module-summary">Module summary</h2>
+<p>ATMOSphere&#39;s platform-signed fork of lampa-app/LAMPA — Kotlin Android
+client/wrapper for the Lampa media-library JS frontend. applicationId
+top.rootu.lampa kept identical to upstream.</p>
+<p>For full module context (build steps, integration points,
+host-session safety, submodule-specific commit/push discipline) read
+this directory&#39;s <code>CLAUDE.md</code> and <code>AGENTS.md</code>.</p>
+<h2 id="mandatory-anti-bluff-covenant--end-user-quality-guarantee-user-mandate-2026-04-28">MANDATORY
+ANTI-BLUFF COVENANT — END-USER QUALITY GUARANTEE (User mandate,
+2026-04-28)</h2>
+<p><strong>Forensic anchor — direct user mandate
+(verbatim):</strong></p>
+<blockquote>
+<p>&quot;We had been in position that all tests do execute with success and
+all Challenges as well, but in reality the most of the features does not
+work and can&#39;t be used! This MUST NOT be the case and execution of tests
+and Challenges MUST guarantee the quality, the completion and full
+usability by end users of the product!&quot;</p>
+</blockquote>
+<p>This is the historical origin of the project&#39;s anti-bluff covenant.
+Every test, every Challenge, every gate, every mutation pair exists to
+make the failure mode (PASS on broken-for-end-user feature) mechanically
+impossible.</p>
+<p><strong>Operative rule:</strong> the bar for shipping is
+<strong>not</strong> &quot;tests pass&quot; but <strong>&quot;users can use the
+feature.&quot;</strong> Every PASS in this codebase MUST carry positive
+evidence captured during execution that the feature works for the end
+user. Metadata-only PASS, configuration-only PASS, &quot;absence-of-error&quot;
+PASS, and grep-based PASS without runtime evidence are all critical
+defects regardless of how green the summary line looks.</p>
+<p><strong>Tests AND Challenges (HelixQA) are bound equally</strong> — a
+Challenge that scores PASS on a non-functional feature is the same class
+of defect as a unit test that does. Both must produce positive end-user
+evidence; both are subject to the §8.1 five-constraint rule and §11
+captured-evidence requirement.</p>
+<p><strong>Canonical authority:</strong> constitution submodule <a href="../../../../constitution/Constitution.md"><code>Constitution.md</code></a>
+§11.4 (this end-user-quality-guarantee forensic anchor — propagation
+requirement enforced by pre-build gate
+<code>CM-COVENANT-114-QWEN-PROPAGATION</code>).</p>
+<p>Non-compliance is a release blocker regardless of context.</p>
+<h2 id="114-extension-anchors-carried-by-this-file">§11.4 extension
+anchors carried by this file</h2>
+<p>The following extension anchors apply unconditionally to every change
+landed in this submodule. Their full text lives in the sibling CLAUDE.md
+and in the canonical <code>constitution/Constitution.md</code>. Listed
+here so Qwen Code agents can locate them by literal string match:</p>
+<ul>
+<li><strong>§11.4.1 extension (Phase 33, 2026-05-05)</strong> —
+FAIL-bluffs equally forbidden. A test that crashes for a script-internal
+reason and produces a FAIL exit code is just as misleading as a
+PASS-bluff. Fix at source layer, never at call sites.</li>
+<li><strong>§11.4.2 extension (Phase 34, 2026-05-06)</strong> —
+Recorded-evidence requirement. Every PASS for a user-visible feature
+MUST be cross-checked by the analyzer against the dual-display recording
++ action timeline.</li>
+<li><strong>§11.4.3 extension (Phase 34, 2026-05-06)</strong> —
+Per-device-topology test dispatch. Topology-touching tests MUST detect
+topology at entry and dispatch the topology-appropriate variant.</li>
+<li><strong>§11.4.4 extension (User mandate, 2026-05-06)</strong> —
+Test-interrupt-on-discovery + retest-from-clean-baseline. The moment any
+defect is re-discovered or newly identified mid-cycle, STOP and fix at
+root cause + four-layer coverage + full rebuild + reflash + retest.</li>
+<li><strong>§11.4.4 expansion (User mandate, 2026-05-06)</strong> —
+Systematic debugging via superpowers skills + four-layer test coverage
+per fix (pre-build gate + post-build gate + post-flash on-device test +
+HelixQA Challenge + paired mutation) + documentation update + no-bluff
+certification per cycle.</li>
+<li><strong>§11.4.5 — Audio + video quality analysis comprehensiveness
+(User mandate, 2026-05-07)</strong> — Audio: presence + channel count +
+sample rate + glitch census + coexistence-artifact census. Video:
+presence + routing target + frame health + obstruction census +
+resolution + codec. Challenges bound equally.</li>
+<li><strong>§11.4.6 — No-guessing mandate (User mandate,
+2026-05-08)</strong> — Forbidden vocabulary: <code>likely</code>,
+<code>probably</code>, <code>maybe</code>, <code>might</code>,
+<code>possibly</code>, <code>presumably</code>, <code>seems</code>,
+<code>appears to</code>. Prove with captured evidence OR mark
+<code>UNCONFIRMED:</code> / <code>UNKNOWN:</code> /
+<code>PENDING_FORENSICS:</code>.</li>
+<li><strong>§11.4.7 — Demotion-evidence rule (Phase 38.X+2 amendment,
+2026-05-11)</strong> — Demotion from FAIL to lower-severity requires
+positive evidence captured under the same conditions that originally
+exposed the defect.</li>
+<li><strong>§11.4.8 — Deep-web-research-before-implementation mandate
+(User mandate, 2026-05-12)</strong> — Cite external source URL OR
+literal &quot;NO external solution found — original work&quot; in every
+non-trivial fix.</li>
+<li><strong>§11.4.9 — Batch-source-fixes-before-rebuild mandate (User
+mandate, 2026-05-12)</strong> — All source-side fixes that DO NOT
+require runtime on-device validation MUST be landed BEFORE the next
+firmware rebuild.</li>
+<li><strong>§11.4.10 — Credentials-handling mandate (User mandate,
+2026-05-12)</strong> — Credentials NEVER live in tracked files.
+<code>.env</code> git-ignored project-wide. Tests load from
+<code>scripts/testing/secrets/</code> (chmod 600).</li>
+<li><strong>§11.4.13 — Out-of-band sink-side captured-evidence mandate
+(User mandate, 2026-05-13)</strong> — When an HDMI sink with
+network-accessible introspection API is present, every audio test MUST
+consume the sink&#39;s report as captured-evidence.</li>
+<li><strong>§11.4.14 — Test playback cleanup mandate (User mandate,
+2026-05-13)</strong> — Every test that issues <code>am start</code> /
+<code>cmd media_session play</code> MUST issue matching
+<code>am force-stop</code> / <code>KEYCODE_MEDIA_STOP</code> + EXIT
+trap.</li>
+<li><strong>§11.4.15 — Item-status tracking mandate (User mandate,
+2026-05-13)</strong> — Every active item in <code>Issues.md</code>
+carries a <code>**Status:**</code> line.</li>
+<li><strong>§11.4.16 — Item-type tracking mandate (User mandate,
+2026-05-14)</strong> — Every active item in <code>Issues.md</code>
+carries a <code>**Type:**</code> line with one of
+<code>{Bug | Feature | Task}</code>.</li>
+<li><strong>§11.4.40 — Full-suite retest before release tag mandate
+(User mandate, 2026-05-17)</strong> — Release tag MUST NOT be created
+until a complete retest with ALL existing tests has been executed on a
+clean baseline.</li>
+<li><strong>§11.4.41 — Pre-Force-Push Merge-First Mandate (User mandate,
+2026-05-17)</strong> — Every force-push MUST be preceded by a mechanical
+4-step merge-first pipeline (fetch + integrate + audit + push with
+<code>--force-with-lease</code>).</li>
+</ul>
+<h2 id="mandatory-126-memory-budget-ceiling--60-maximum-user-mandate-2026-04-30">MANDATORY
+§12.6 MEMORY-BUDGET CEILING — 60% MAXIMUM (User mandate,
+2026-04-30)</h2>
+<p>Project procedures MUST NOT use more than <strong>60% of total system
+RAM</strong> (<code>HOST_SAFETY_MAX_MEM_PCT</code>). The remaining 40%
+is reserved for the operator&#39;s other workloads. There is NO
+operator-facing override flag.</p>
+<p><code>scripts/build.sh</code> wraps <code>m -j</code> in
+<code>bounded_run</code> so only the bounded scope is OOM-killed if the
+build&#39;s collective RSS exceeds the budget —
+<code>user@&lt;uid&gt;.service</code> stays alive.</p>
+<p><strong>Canonical authority:</strong> constitution submodule <a href="../../../../constitution/Constitution.md"><code>Constitution.md</code></a>
+§12.6.</p>
+<p>Non-compliance is a release blocker regardless of context.</p>
+<h2 id="companion-documents">Companion documents</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLAUDE.md</code></td>
+<td>Full module ruleset (Claude Code primary context)</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>Cross-agent mirror (OpenCode, Cursor, Aider, generic AI
+tooling)</td>
+</tr>
+<tr>
+<td><code>QWEN.md</code> (this file)</td>
+<td>Qwen Code CLI entry point</td>
+</tr>
+<tr>
+<td><code>../../../../constitution/Constitution.md</code></td>
+<td>Universal canonical rules</td>
+</tr>
+<tr>
+<td><code>../../../../constitution/QWEN.md</code></td>
+<td>Universal Qwen entry point</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
