@@ -174,6 +174,33 @@ Decision rule (proceed autonomously when ALL): (a) reversible OR pre-op backup p
 [`Constitution.md`](../../../../constitution/Constitution.md) §11.4.101.
 
 Non-compliance is a release blocker regardless of context.
+**§11.4.52 — Autonomous-Validation Mandate (User mandate, 2026-05-18)**
+
+Every user-facing feature MUST have at least one autonomous validation path: end-to-end via `adb shell` + scripted automation, captured runtime evidence per §11.4.5, PASS/FAIL verdict WITHOUT human presence to drive UI, observe screen, or make decisions. Operator-attended tests are SUPPLEMENTARY, never PRIMARY. A feature whose ONLY validation path is operator-attended is a §11.4.52 violation. Acceptable autonomous paths: (a) programmatic instrumentation APK + structured JSON result; (b) headless intent dispatch + state poll (`am start --es` / `am broadcast` + `dumpsys` / `/proc/<pid>/maps` / `media.metrics`); (c) ADB-driven uiautomator (ONLY if hierarchy has ≥1 clickable node — empty hierarchy demands fallback to APK/intent); (d) network-side sink probe per §11.4.13; (e) HelixQA autonomous QA session per §11.4.27. Coverage ledger (§11.4.25) classifies each feature `AUTONOMOUS_VERIFIED` / `AUTONOMOUS_DESIGNED` / `OPERATOR_ATTENDED_ONLY` / `NOT_APPLICABLE`; `OPERATOR_ATTENDED_ONLY` blocks release until migrated. Composes §11.4.25/27/39/43/48/49/50/51. Pre-build gates `CM-COVENANT-114-52-PROPAGATION` + `CM-AF-AUTONOMOUS-PATH-PER-FEATURE` + paired mutations. No escape hatch.
+
+**Canonical authority:** constitution submodule
+[`Constitution.md`](../../../../constitution/Constitution.md) §11.4.52.
+
+Non-compliance is a release blocker regardless of context.
+
+**§11.4.69 — Universal sink-side positive-evidence taxonomy + mechanical enforcement (User mandate, 2026-05-20)**
+
+Universal generalisation of §11.4.68 (audio-specific) across every user-visible feature class. Every user-visible feature MUST map to one entry in the closed-set §11.4.69 sink-side evidence taxonomy (audio_output, audio_input, video_display, network_throughput, network_connectivity, bluetooth_a2dp, bluetooth_pair, touch_input, sensor, gpu_render, storage_read, storage_write, mediacodec_decode, mediacodec_encode, miracast, cast, boot_service, package_install, permission_grant, wifi_link, wifi_throughput, ethernet_link, display_topology, drm_playback, subtitle_render — open to additions). Every PASS for a feature in the taxonomy MUST cite a captured-evidence artefact path matching the required evidence shape. Helper contracts: `ab_pass_with_evidence <description> <evidence_path>` (verifies path exists AND non-empty); `ab_skip_with_reason <description> <closed-set-reason>` (`geo_restricted` / `operator_attended` / `hardware_not_present` / `topology_unsupported` / `network_unreachable_external` / `feature_disabled_by_config`); bare `ab_pass` deprecated (WARN pre-grace, FAIL post-grace 2026-06-19). Pre-build gates `CM-SINK-EVIDENCE-PER-FEATURE` + `CM-NO-FAIL-OPEN-SKIP` + `CM-AB-PASS-WITH-EVIDENCE-EVERYWHERE` + `CM-COVENANT-114-69-PROPAGATION` + paired §1.1 mutations. Composes §11.4.1/2/5/6/13/27/50/52/68. No escape hatch — no `--skip-evidence`, `--config-only-pass`, `--allow-fail-open-skip`, `--legacy-ab-pass-permitted` flag.
+
+**Canonical authority:** constitution submodule
+[`Constitution.md`](../../../../constitution/Constitution.md) §11.4.69.
+
+Non-compliance is a release blocker regardless of context.
+
+**§11.4.98 — Full-Automation Anti-Bluff Mandate — Live tests MUST be re-runnable end-to-end without manual intervention (User mandate, 2026-05-28)**
+
+Forensic: "Make sure we have full automation testing of all scenarios with real bot, main group and users without any manual intervention or contribution of real user! Everything MUST BE fully automatic and autonomous! These tests MUST BE able to rerun endless times when needed! ... no false positives ... No bluff is allowed!" A live/integration/e2e/Challenge test requiring a human action during execution (typing a chat message, clicking a UI, hand-triggering a webhook, anything beyond test start + PASS/FAIL report) is by definition a §11.4 PASS-bluff at the automation layer. (A) Every test — unit/integration/e2e/Challenge/stress/chaos/live — MUST be fully self-driving end-to-end, reporting PASS/FAIL/SKIP-with-reason without further human action after startup. (B) Single exception: one-time credential bootstrap OUTSIDE test execution. (C) Live messenger/channel/agent tests: no operator-typed prompts (drive programmatically), no dev-session-colliding UUIDs, no 60s human-response windows (§11.4.50), re-runnability proof at `-count=3`, obsolescence audit COMPLIANT vs NON-COMPLIANT, no false-positive PASS. (D) Composes §11.4.85 + §11.4.89 + §11.4.87 + §11.4.94. (E) Pre-build gate `CM-COVENANT-114-98-PROPAGATION` enforces literal `11.4.98` presence; paired §1.1 mutations strip → gate FAILs. (F) Manual-dependency test not rewritten within 30 days graduates to §11.4.90 Obsolete citing §11.4.98.
+
+**Canonical authority:** constitution submodule
+[`Constitution.md`](../../../../constitution/Constitution.md) §11.4.98.
+
+Non-compliance is a release blocker regardless of context.
+
 ## Companion documents
 
 | File | Role |
