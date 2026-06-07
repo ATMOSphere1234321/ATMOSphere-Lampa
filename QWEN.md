@@ -211,6 +211,18 @@ Forensic: "Make sure we have full automation testing of all scenarios with real 
 
 Non-compliance is a release blocker regardless of context.
 
+**§11.4.131 — Standing session-resumption file mandate (User mandate, 2026-06-07)**
+
+**Forensic anchor — verbatim user mandate (2026-06-07):** "Make this markdown a standard file which will be written EVERY TIME when we need fresh session out of the box! It MUST BE always up to date and in sync so whenever new session is created all we have to do is just point to it!"
+
+Every project MUST maintain a SINGLE canonical, always-current session-resumption file at a fixed project-declared standard path (declared once per §11.4.35, never moved without a §11.4.66 operator decision) — the out-of-the-box entry point for any fresh session (new session = ONLY point the agent at this one file). §11.4.131 promotes §11.4.127 (PREPARE a resumption prompt on demand) into a STANDING, version-controlled ARTIFACT, ALWAYS present + ALWAYS in sync: (A) exists at the declared path at all times; (B) (re)written whenever a fresh session is needed OR live state materially changes (new HEAD/build-artifact id/phase/device state/in-flight job/blocking decision) — the §12.10 trigger set, a stale file = §11.4.131 violation (same class as §12.10 stale-CONTINUATION); (C) carries SHORT+FULL §11.4.127 variants, points to handoff docs read-FIRST + git fetch + exact live-state anchors + PHASE/NEXT/terminal-goal + binding constraints, MOMENT-VALID never generic (§11.4.6); (D) §11.4.65 export + §11.4.44 revision header; (E) given ONLY this file's path a fresh session fully resumes with zero additional context. Composes §12.10/.127/.65/.44/.6/.66/.126. Classification: universal (§11.4.17). Propagation gate `CM-COVENANT-114-131-PROPAGATION` (literal `11.4.131`) + recommended gate `CM-SESSION-RESUMPTION-FILE-PRESENT` + paired §1.1 mutation.
+
+**Canonical authority:** constitution submodule
+[`Constitution.md`](../../../../constitution/Constitution.md) §11.4.131.
+
+Non-compliance is a release blocker regardless of context. No escape hatch — no `--skip-resumption-file`, `--ephemeral-prompt-only`, `--stale-resumption-OK`, `--generic-template-OK` flag.
+
+
 ## Companion documents
 
 | File | Role |
