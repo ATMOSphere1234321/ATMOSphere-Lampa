@@ -7,151 +7,6 @@
   <title>QWEN</title>
   <style>
 
-html {
-color: #1a1a1a;
-background-color: #fdfdfd;
-}
-body {
-margin: 0 auto;
-max-width: 36em;
-padding-left: 50px;
-padding-right: 50px;
-padding-top: 50px;
-padding-bottom: 50px;
-hyphens: auto;
-overflow-wrap: break-word;
-text-rendering: optimizeLegibility;
-font-kerning: normal;
-}
-@media (max-width: 600px) {
-body {
-font-size: 0.9em;
-padding: 12px;
-}
-h1 {
-font-size: 1.8em;
-}
-}
-@media print {
-html {
-background-color: white;
-}
-body {
-background-color: transparent;
-color: black;
-font-size: 12pt;
-}
-p, h2, h3 {
-orphans: 3;
-widows: 3;
-}
-h2, h3, h4 {
-page-break-after: avoid;
-}
-}
-p {
-margin: 1em 0;
-}
-a {
-color: #1a1a1a;
-}
-a:visited {
-color: #1a1a1a;
-}
-img {
-max-width: 100%;
-}
-svg {
-height: auto;
-max-width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-margin-top: 1.4em;
-}
-h5, h6 {
-font-size: 1em;
-font-style: italic;
-}
-h6 {
-font-weight: normal;
-}
-ol, ul {
-padding-left: 1.7em;
-margin-top: 1em;
-}
-li > ol, li > ul {
-margin-top: 0;
-}
-blockquote {
-margin: 1em 0 1em 1.7em;
-padding-left: 1em;
-border-left: 2px solid #e6e6e6;
-color: #606060;
-}
-code {
-font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-font-size: 85%;
-margin: 0;
-hyphens: manual;
-}
-pre {
-margin: 1em 0;
-overflow: auto;
-}
-pre code {
-padding: 0;
-overflow: visible;
-overflow-wrap: normal;
-}
-.sourceCode {
-background-color: transparent;
-overflow: visible;
-}
-hr {
-border: none;
-border-top: 1px solid #1a1a1a;
-height: 1px;
-margin: 1em 0;
-}
-table {
-margin: 1em 0;
-border-collapse: collapse;
-width: 100%;
-overflow-x: auto;
-display: block;
-font-variant-numeric: lining-nums tabular-nums;
-}
-table caption {
-margin-bottom: 0.75em;
-}
-tbody {
-margin-top: 0.5em;
-border-top: 1px solid #1a1a1a;
-border-bottom: 1px solid #1a1a1a;
-}
-th {
-border-top: 1px solid #1a1a1a;
-padding: 0.25em 0.5em 0.25em 0.5em;
-}
-td {
-padding: 0.125em 0.5em 0.25em 0.5em;
-}
-header {
-margin-bottom: 4em;
-text-align: center;
-}
-#TOC li {
-list-style: none;
-}
-#TOC ul {
-padding-left: 1.3em;
-}
-#TOC > ul {
-padding-left: 0;
-}
-#TOC a:not(:hover) {
-text-decoration: none;
-}
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -166,6 +21,175 @@ margin: 0 0.8em 0.2em -1.6em;
 vertical-align: middle;
 }
 .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+
+:root {
+--doc-fg: #1c1e21;
+--doc-fg-muted: #555a61;
+--doc-bg: #ffffff;
+--doc-accent: #1a5fb4;
+--doc-accent-soft: #e8f0fb;
+--doc-border: #d6d9de;
+--doc-border-soft: #ececef;
+--doc-code-bg: #f6f8fa;
+--doc-code-fg: #24292f;
+--doc-quote-bar: #c7cdd6;
+}
+html {
+font-size: 16px;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+"Helvetica Neue", Arial, "Noto Sans", sans-serif,
+"Apple Color Emoji", "Segoe UI Emoji";
+color: var(--doc-fg);
+background: var(--doc-bg);
+line-height: 1.6;
+max-width: 56rem;
+margin: 2.5rem auto;
+padding: 0 1.5rem 4rem;
+-webkit-text-size-adjust: 100%;
+text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-weight: 600;
+line-height: 1.25;
+margin: 1.8em 0 0.6em;
+color: var(--doc-fg);
+}
+h1 {
+font-size: 2.0rem;
+border-bottom: 2px solid var(--doc-border);
+padding-bottom: 0.3em;
+margin-top: 0;
+}
+h2 {
+font-size: 1.55rem;
+border-bottom: 1px solid var(--doc-border-soft);
+padding-bottom: 0.25em;
+}
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1.0rem; color: var(--doc-fg-muted); }
+h6 { font-size: 0.95rem; color: var(--doc-fg-muted); }
+
+h3.status-group-heading {
+margin-top: 1.6em;
+padding: 0.35em 0.6em;
+background: var(--doc-accent-soft);
+border-left: 4px solid var(--doc-accent);
+border-radius: 3px;
+font-size: 1.15rem;
+}
+
+p { margin: 0.7em 0; }
+a {
+color: var(--doc-accent);
+text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+hr {
+border: 0;
+border-top: 1px solid var(--doc-border);
+margin: 2em 0;
+}
+blockquote {
+margin: 1em 0;
+padding: 0.4em 1.1em;
+color: var(--doc-fg-muted);
+border-left: 4px solid var(--doc-quote-bar);
+background: #fafbfc;
+}
+ul, ol { padding-left: 1.6em; margin: 0.7em 0; }
+li { margin: 0.25em 0; }
+
+code, pre, kbd, samp {
+font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas,
+"Liberation Mono", Menlo, monospace;
+font-size: 0.88em;
+}
+code {
+background: var(--doc-code-bg);
+color: var(--doc-code-fg);
+padding: 0.15em 0.4em;
+border-radius: 4px;
+}
+pre {
+background: var(--doc-code-bg);
+color: var(--doc-code-fg);
+padding: 1em 1.2em;
+border-radius: 6px;
+overflow-x: auto;
+line-height: 1.45;
+border: 1px solid var(--doc-border-soft);
+}
+pre code {
+background: transparent;
+padding: 0;
+border-radius: 0;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 1.2em 0;
+font-size: 0.93rem;
+display: block;
+overflow-x: auto;
+}
+thead th {
+background: var(--doc-accent-soft);
+color: var(--doc-fg);
+font-weight: 600;
+text-align: left;
+}
+th, td {
+border: 1px solid var(--doc-border);
+padding: 0.5em 0.75em;
+vertical-align: top;
+}
+tbody tr:nth-child(even) { background: #fbfbfc; }
+
+
+td.cell-type-bug { background: #fde8e8; } 
+td.cell-type-feature { background: #e6f4ea; } 
+td.cell-type-task { background: #eef2f7; } 
+
+td.cell-status-queued { background: #eef1f4; } 
+td.cell-status-in-progress { background: #fff4d6; } 
+td.cell-status-ready-for-testing { background: #e3f0ff; } 
+td.cell-status-in-testing { background: #d9ecff; } 
+td.cell-status-reopened { background: #ffe1cc; } 
+td.cell-status-operator-blocked { background: #ffd6d6; } 
+td.cell-status-fixed { background: #d6f5dd; } 
+td.cell-status-obsolete { background: #e0e0e0; color: var(--doc-fg-muted); } 
+
+tr.row-status-fixed { background: #f1fbf3; }
+tr.row-status-fixed td { border-color: #cdeccf; }
+tr.row-status-operator-blocked { background: #fff4f4; }
+tr.row-status-operator-blocked td { border-color: #f3cccc; }
+
+tr.row-status-obsolete {
+background: #e0e0e0;
+color: var(--doc-fg-muted);
+}
+tr.row-status-obsolete td {
+text-decoration: line-through;
+border-color: #cfcfcf;
+}
+
+tr.row-status-obsolete td.cell-status-obsolete {
+text-decoration: line-through;
+}
+
+img {
+max-width: 100%;
+height: auto;
+}
 </style>
 </head>
 <body>
